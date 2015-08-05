@@ -28,13 +28,22 @@ function set_css(video_id) {
 	span.innerHTML = html;
 }
 
+function goat() {
+	gif = 'http://media.giphy.com/media/Vw2uzhE0Bwfks/giphy.gif'
+	document.body.style.backgroundRepeat = 'repeat';
+	document.body.style.backgroundImage = 'url(' + gif + ')';
+	document.getElementById('wrapper').style.backgroundColor = 'rgba(255,255,255,0.0)';
+}
+
 // this is the main function
 function vidsearch() {
 	// load input values from the html elements
 	var duration = document.getElementById('time_input').value;
 	// if goat, play goat video
 	if (duration == "goat" || duration == "goats") {
-		video_id = "SjHUb7NSrNk"
+		goat();
+		video_id = "SjHUb7NSrNk";
+		set_css(video_id)
 	} else {
 	// do everything else
 		duration = duration.split(':'); // split form input into usable numbers
@@ -81,6 +90,13 @@ function vidsearch() {
 			} else {
 				// default to interior crocodile alligator video
 				video_id = 'q_qUiytLYRc'
+				// set wallpaper to stupid gif
+				gif = 'http://img.photobucket.com/albums/v717/Lauranoodle/AnimationAlligatorSkip_color.gif'
+				document.body.style.backgroundRepeat = 'repeat';
+				document.body.style.backgroundImage = 'url(' + gif + ')';
+				document.getElementById('wrapper').style.backgroundImage = 'url(http://media.giphy.com/media/URZcG7uLd9h4s/giphy.gif)';
+				document.getElementById('wrapper').style.backgroundRepeat = 'repeat';
+				document.getElementById('wrapper').style.backgroundColor = 'rgba(255,255,255,0.0)';
 				continue
 			}
 		}
