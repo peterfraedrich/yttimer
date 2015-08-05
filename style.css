@@ -1,0 +1,37 @@
+/* style.css */
+
+body {
+	background-color: #333;
+}
+#wrapper {
+	position: absolute;
+	width: 600px;
+	height: 450px;
+	margin-left: 50%;
+	left: -320px;
+	padding: 20px;
+	background-color: #FFF;
+}
+.box1 {
+	width: 600px;
+	height: 75px;
+	text-align: center;
+	font-size: 50px;
+	font-weight: bolder;
+}
+.btn1 {
+	width: 300px;
+	height: 40px;
+	text-align: center;
+	font-weight: bolder;
+	font-size: 25px; 
+	margin: 10px;
+}
+#vidplayer {
+	position: absolute;
+	width: 560px;
+	height: 315px;
+	margin-left: 50%;
+	left: -280px;
+	background-color: #000;
+}
