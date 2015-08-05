@@ -7,13 +7,23 @@
 
 <body>
 	<div id="wrapper">
+		<div id="top_title"><center>
+			<img id='ytlogo' src='ytlogo.png'> Egg Timer<br>
+			<p>Put in a time and press 'Go!'</p>
+		</center>
+		</div>
 		<div id="input_form">
 			<center>
 			<input id="time_input" type="text" class="box1" placeholder="HH:MM:SS" onkeydown="if (event.keyCode == 13) document.getElementById('goBtn').click()"></input><br>
-			<button type="button" id="goBtn" class="btn1" onClick="vidsearch()" label="Go!" >Go!</button>
+			<button type="button" id="goBtn" class="btn1" onClick="vsearch2()" label="Go!" >Go!</button>
 		</center>
 		</div>
 		<div id="vidplayer">
+			<div id="working">
+				<br><br><br><br>
+				<img src='loading.gif'><br>
+				Finding the perfect video!
+			</div>
 			<span id="video"></span>
 		</div>
 
