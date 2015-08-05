@@ -13,14 +13,13 @@ function vid_details(vid_id) {
 	xmlHttp.send( null );
 	return xmlHttp.responseText;
 };
-
+// list videos in the length range
 function get_videos(length, page) {
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open( "GET", list_query+length+page+'&type=video'+apikey, false );
 	xmlHttp.send( null );
 	return xmlHttp.responseText;
 };
-
 // this loads the video from youtube in an iframe
 function set_css(video_id) {
 	var html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+video_id+'?autoplay=1" frameborder="0" allowfullscreen></iframe>';
@@ -28,7 +27,6 @@ function set_css(video_id) {
 	span.innerHTML = html;
 	document.getElementById('working').style.display = 'none';
 };
-
 // goat css
 function goat() {
 	video_id = 'SjHUb7NSrNk';
@@ -38,7 +36,7 @@ function goat() {
 	document.body.style.backgroundImage = 'url(' + gif + ')';
 	document.getElementById('wrapper').style.backgroundColor = 'rgba(255,255,255,0.0)';
 };
-
+// taylor goat css
 function taylor_swift() {
 	video_id = 'L26vEW8Xg2g';
 	set_css(video_id);
@@ -47,11 +45,10 @@ function taylor_swift() {
 	document.body.style.backgroundImage = 'url(' + gif + ')';
 	document.getElementById('wrapper').style.backgroundColor = 'rgba(255,255,255,0.0)';
 };
-
+// croc css
 function croc() {
 	video_id = 'q_qUiytLYRc';
 	set_css(video_id);
-	// set wallpaper to stupid gif
 	gif = 'http://img.photobucket.com/albums/v717/Lauranoodle/AnimationAlligatorSkip_color.gif';
 	document.body.style.backgroundRepeat = 'repeat';
 	document.body.style.backgroundImage = 'url(' + gif + ')';
@@ -59,9 +56,9 @@ function croc() {
 	document.getElementById('wrapper').style.backgroundRepeat = 'repeat';
 	document.getElementById('wrapper').style.backgroundColor = 'rgba(255,255,255,0.0)';
 };
-
+// this is the main function that is called by the onClick event
 function vsearch2() {
-	document.getElementById('working').style.opacity = 1;
+	document.getElementById('working').style.opacity = 1; // make the single ladies visible
 	// load input values from the html elements
 	var duration = document.getElementById('time_input').value;
 	// check for easter eggs
