@@ -24,12 +24,13 @@ function vid_details(vid_id) {
 // this loads the video from youtube in an iframe
 function set_css(video_id) {
 	var html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+video_id+'?autoplay=1" frameborder="0" allowfullscreen></iframe>';
-	var span = document.getElementById('video')
+	var span = document.getElementById('video');
 	span.innerHTML = html;
 }
 
+// goat css
 function goat() {
-	gif = 'http://media.giphy.com/media/Vw2uzhE0Bwfks/giphy.gif'
+	gif = 'http://media.giphy.com/media/Vw2uzhE0Bwfks/giphy.gif';
 	document.body.style.backgroundRepeat = 'repeat';
 	document.body.style.backgroundImage = 'url(' + gif + ')';
 	document.getElementById('wrapper').style.backgroundColor = 'rgba(255,255,255,0.0)';
@@ -41,46 +42,46 @@ function vidsearch() {
 	var duration = document.getElementById('time_input').value;
 	// if goat, play goat video
 	if (duration == "goat" || duration == "goats") {
-		goat();
+		goat(); // trigger goat-themed CSS
 		video_id = "SjHUb7NSrNk";
-		set_css(video_id)
+		set_css(video_id);
 	} else {
 	// do everything else
 		duration = duration.split(':'); // split form input into usable numbers
-		hour = parseInt(duration[0], 10) // get rid of leading zeroes
-		minute = parseInt(duration[1], 10) // ditto
-		second = parseInt(duration[2], 10) // ditto
+		hour = parseInt(duration[0], 10); // get rid of leading zeroes
+		minute = parseInt(duration[1], 10); // ditto
+		second = parseInt(duration[2], 10); // ditto
 		if (hour == 0 || hour == 'NaN') {
 			// if no hour number, or hour = 0, then use just minutes and seconds
-			time = "PT" + minute + "M" + second + "S"
+			time = "PT" + minute + "M" + second + "S";
 		} else {
 			// otherwise use hours
-			time = "PT" + hour + "H" + minute + "M" + second + "S"
+			time = "PT" + hour + "H" + minute + "M" + second + "S";
 		};
 		// get general duration for video (because the YT API is dumb)
 		if (hour < 1 && minute < 4) {
-			length = "&videoDuration=short"
+			length = "&videoDuration=short";
 		} else if (hour < 1 && minute > 4 && minute < 20) {
-			length = "&videoDuration=medium"
+			length = "&videoDuration=medium";
 		} else if (hour < 1 && minute > 20 || hour > 0) {
-			length = "&videoDuration=long"
-		}
+			length = "&videoDuration=long";
+		};
 		
 		// call vid_list(), get JSON response from YT and parse
 		vlist1 = JSON.parse(vid_list(length));
 		
 		// set up empty array for video id's
-		ids = []
+		ids = [];
 		
 		// iterate through returned videos in JSON response
 		for (i in vlist1.items) {
 			// put the video id's into the array
 			ids.push(vlist1.items[i].id.videoId);
-		}
+		};
 		// get the details for each video from YT API
 		for (var i = 0; i < ids.length; i++) {
 			// vall vid_details(), parse as JSON
-			res = JSON.parse(vid_details(ids[i]))
+			res = JSON.parse(vid_details(ids[i]));
 			// set var to the object we want in the JSON
 			duration = res.items[0].contentDetails.duration;
 			// check for matches
@@ -89,19 +90,19 @@ function vidsearch() {
 				break; // if something matches, use that ID and exit the loop
 			} else {
 				// default to interior crocodile alligator video
-				video_id = 'q_qUiytLYRc'
+				video_id = 'q_qUiytLYRc';
 				// set wallpaper to stupid gif
-				gif = 'http://img.photobucket.com/albums/v717/Lauranoodle/AnimationAlligatorSkip_color.gif'
+				gif = 'http://img.photobucket.com/albums/v717/Lauranoodle/AnimationAlligatorSkip_color.gif';
 				document.body.style.backgroundRepeat = 'repeat';
 				document.body.style.backgroundImage = 'url(' + gif + ')';
 				document.getElementById('wrapper').style.backgroundImage = 'url(http://media.giphy.com/media/URZcG7uLd9h4s/giphy.gif)';
 				document.getElementById('wrapper').style.backgroundRepeat = 'repeat';
 				document.getElementById('wrapper').style.backgroundColor = 'rgba(255,255,255,0.0)';
-				continue
-			}
-		}
-	}
+				continue;
+			};
+		};
+	};
 	// update DOM with video iframe
-	set_css(video_id)	
-}
+	set_css(video_id);	
+};
 
