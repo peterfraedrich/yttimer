@@ -22,6 +22,7 @@ function get_videos(length, page) {
 };
 // this loads the video from youtube in an iframe
 function set_css(video_id) {
+	console.log(video_id);
 	var html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+video_id+'?autoplay=1" frameborder="0" allowfullscreen></iframe>';
 	var span = document.getElementById('video');
 	span.innerHTML = html;
@@ -125,3 +126,43 @@ function vsearch2() {
 	};
 };
 
+function nodesearch() {
+	document.getElementById('working').style.opacity = 1;
+	var duration = document.getElementById('time_input').value;
+	if (duration == 'goat' || duration == 'goats') {
+		goat();
+	} else if (duration == '') {
+		croc();
+	} else if (duration == 'taylor' || duration == 'swift' || duration == 'justin' || duration ==  'bieber' || duration == 'miley' || duration == 'cyrus') {
+		taylor_swift();
+	} else {
+		duration = duration.split(':'); // split form input into usable numbers
+		hour = parseInt(duration[0], 10); // get rid of leading zeroes
+		minute = parseInt(duration[1], 10); // ditto
+		second = parseInt(duration[2], 10); // ditto, apparently YT trims 1 second off the duration, soooo idk
+		if (hour == 0 || hour == 'NaN') {
+			// if no hour number, or hour = 0, then use just minutes and seconds
+			time = "PT" + minute + "M" + second + "S";
+			rawtime = hour + '%3A' + minute + '%3A' + second;
+		} else {
+			// otherwise use hours
+			time = "PT" + hour + "H" + minute + "M" + second + "S";
+			rawtime = minute + '%3A' + second;
+		};
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open( "GET", 'http://ytdb:667/video?duration=' + time + '&rawtime=' + rawtime, true);
+		//xmlHttp.responseType = 'json';
+		xmlHttp.send();
+		console.log(xmlHttp.responseText);
+		xmlHttp.onreadystatechange = function() {
+			if (xmlHttp.readyState == 4 & xmlHttp.status==200) {
+				data = xmlHttp.responseText;
+				console.log(data);
+				set_css(data)
+			}
+		}/*
+		data = JSON.parse(xmlHttp.responseText);
+		console.log(data);
+		set_css(data.video_id)*/
+	}
+}
